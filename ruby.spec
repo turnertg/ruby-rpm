@@ -1,29 +1,29 @@
-%define rubyver         2.3.0
+%define rubymajor       1.8
+%define rubyver         1.8.7
+%define rubypatch       374
 
 Name:           ruby
-Version:        %{rubyver}
+Version:        %{rubyver}.%{rubypatch}
 Release:        1%{?dist}
 License:        Ruby License/GPL - see COPYING
 URL:            http://www.ruby-lang.org/
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:       readline ncurses gdbm glibc openssl libyaml libffi zlib
-BuildRequires:  readline-devel ncurses-devel gdbm-devel glibc-devel gcc openssl-devel make libyaml-devel libffi-devel zlib-devel
-Source0:        ftp://ftp.ruby-lang.org/pub/ruby/ruby-%{rubyver}.tar.gz
+BuildRequires:  readline-devel ncurses-devel gdbm-devel glibc-devel gcc openssl-devel make libyaml-devel libffi-devel zlib-devel patch
+Source0:        ftp://ftp.ruby-lang.org/pub/ruby/%{rubymajor}/ruby-%{rubyver}-p%{rubypatch}.tar.gz
 Patch:         ruby-openssl.patch
 Summary:        An interpreter of object-oriented scripting language
 Group:          Development/Languages
-Provides: ruby(abi) = 2.3
+Provides: ruby(abi) = 1.8
 Provides: ruby-irb
 Provides: ruby-rdoc
 Provides: ruby-libs
 Provides: ruby-devel
-Provides: rubygems
 Obsoletes: ruby
 Obsoletes: ruby-libs
 Obsoletes: ruby-irb
 Obsoletes: ruby-rdoc
 Obsoletes: ruby-devel
-Obsoletes: rubygems
 
 %description
 Ruby is the interpreted scripting language for quick and easy
@@ -32,8 +32,7 @@ files and to do system management tasks (as in Perl).  It is simple,
 straight-forward, and extensible.
 
 %prep
-%setup -n ruby-%{rubyver}
-
+%setup -n ruby-%{rubyver}-p%{rubypatch}
 %patch -p0
 %build
 export CFLAGS="$RPM_OPT_FLAGS -Wall -fno-strict-aliasing"
@@ -61,11 +60,13 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-, root, root)
 %{_bindir}/*
-%{_includedir}/*
 %{_datadir}/*
 %{_libdir}/*
 
 %changelog
+* Tue Jan  5 2016 OZAWA Sakuro <ozawa@feedforce.jp>
+- Tweaked for 1.8.7-p374
+
 * Tue Dec 25 2015 Masato Tanaka <tanaka@feedforce.jp> - 2.3.0
 - Update ruby version to 2.3.0
 

@@ -1,6 +1,6 @@
 #!/bin/sh
 RUBY_X_Y_Z_VERSION=$(cat $HOME/rpmbuild/SOURCES/ruby-version)
-RUBY_X_Y_VERSION=$(echo $RUBY_X_Y_Z_VERSION | sed -e 's@\.[0-9]$@@')
+RUBY_X_Y_VERSION=${RUBY_X_Y_Z_VERSION%.*}
 
 cd $HOME/rpmbuild/SOURCES && curl -LO https://cache.ruby-lang.org/pub/ruby/$RUBY_X_Y_VERSION/ruby-$RUBY_X_Y_Z_VERSION.tar.gz
 

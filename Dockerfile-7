@@ -6,7 +6,7 @@ RUN yum update -y
 RUN yum install -y rpm-build tar make patch
 
 # ruby depends
-RUN yum -y install readline-devel ncurses-devel gdbm-devel glibc-devel gcc openssl-devel libyaml-devel libffi-devel zlib-devel
+RUN yum -y install readline-devel ncurses-devel gdbm-devel db4-devel glibc-devel gcc openssl-devel libyaml-devel libffi-devel zlib-devel
 
 # create build user
 RUN useradd -u 1000 rpmbuilder

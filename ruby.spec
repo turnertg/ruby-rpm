@@ -8,12 +8,8 @@ Release:        1%{?dist}
 License:        Ruby License/GPL - see COPYING
 URL:            http://www.ruby-lang.org/
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Requires:       readline ncurses gdbm glibc openssl zlib
-BuildRequires:  readline-devel ncurses-devel gdbm-devel glibc-devel gcc openssl-devel make zlib-devel patch
-%if 0%{centos_ver} < 7
-Requires:       db4
-BuildRequires:  db4-devel
-%endif
+Requires:       readline ncurses gdbm db4 glibc openssl zlib
+BuildRequires:  readline-devel ncurses-devel gdbm-devel db4-devel glibc-devel gcc openssl-devel make zlib-devel patch
 Source0:        ftp://ftp.ruby-lang.org/pub/ruby/%{rubymajor}/ruby-%{rubyver}-p%{rubypatch}.tar.gz
 Patch:         ruby-openssl.patch
 Summary:        An interpreter of object-oriented scripting language

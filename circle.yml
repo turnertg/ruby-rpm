@@ -8,11 +8,9 @@ dependencies:
     - ~/cache
   pre:
     - ./build-docker.sh 6
-    - ./build-docker.sh 7
 test:
   override:
     - ./run-docker.sh 6
-    - ./run-docker.sh 7
 deployment:
   master:
     branch: master

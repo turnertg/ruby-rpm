@@ -14,7 +14,16 @@ if ! need_to_release; then
 	exit 0
 fi
 
-go get github.com/aktau/github-release
+go_get_github_release() {
+  (
+    mkdir $HOME/tmptmp; cd $_
+    wget https://github.com/aktau/github-release/releases/download/v0.7.1/linux-amd64-github-release.tar.bz2
+    tar xjf linux-amd64-github-release.tar.bz2
+    cp bin/linux/amd64/github-release $HOME/bin
+  )
+}
+
+go_get_github_release
 cp $CIRCLE_ARTIFACTS/*.rpm .
 
 #

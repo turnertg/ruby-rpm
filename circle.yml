@@ -13,6 +13,6 @@ test:
     - ./script/run-docker.sh 7
 deployment:
   master:
-    branch: master
+    branch: ruby-2.3
     commands:
       - ./script/github-release.sh

@@ -9,29 +9,27 @@ need_to_release() {
 	test $http_code = "404"
 }
 
+get_github_release() {
+  version=v0.7.2
+  wget https://github.com/aktau/github-release/releases/download/${version}/linux-amd64-github-release.tar.bz2
+  tar xjf linux-amd64-github-release.tar.bz2
+  mkdir -p $HOME/bin
+  mv bin/linux/amd64/github-release $HOME/bin/
+}
+
 if ! need_to_release; then
 	echo "$CIRCLE_PROJECT_REPONAME $RUBY_VERSION has already released."
 	exit 0
 fi
 
-go_get_github_release() {
-  (
-    mkdir $HOME/tmptmp
-    cd $HOME/tmptmp
-    wget https://github.com/aktau/github-release/releases/download/v0.7.1/linux-amd64-github-release.tar.bz2
-    tar xjf linux-amd64-github-release.tar.bz2
-    cp bin/linux/amd64/github-release $HOME/bin
-  )
-}
-
-go_get_github_release
+get_github_release
 cp $CIRCLE_ARTIFACTS/*.rpm .
 
 #
 # Create a release page
 #
 
-github-release release \
+$HOME/bin/github-release release \
   --user $CIRCLE_PROJECT_USERNAME \
   --repo $CIRCLE_PROJECT_REPONAME \
   --tag $RUBY_VERSION \
@@ -52,7 +50,7 @@ EOS
 
 upload_rpm() {
   RPM_FILE=$1
-  github-release upload --user $CIRCLE_PROJECT_USERNAME \
+  $HOME/bin/github-release upload --user $CIRCLE_PROJECT_USERNAME \
     --repo $CIRCLE_PROJECT_REPONAME \
     --tag $RUBY_VERSION \
     --name "$RPM_FILE" \
@@ -88,7 +86,7 @@ done
 # Make the release note to complete!
 #
 
-github-release edit \
+$HOME/bin/github-release edit \
   --user $CIRCLE_PROJECT_USERNAME \
   --repo $CIRCLE_PROJECT_REPONAME \
   --tag $RUBY_VERSION \

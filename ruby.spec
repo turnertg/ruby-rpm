@@ -17,11 +17,15 @@ Provides: ruby-rdoc
 Provides: ruby-libs
 Provides: ruby-devel
 Provides: rubygems
-Obsoletes: ruby
-Obsoletes: ruby-libs
-Obsoletes: ruby-irb
-Obsoletes: ruby-rdoc
-Obsoletes: ruby-devel
+Obsoletes: ruby < %{rubyver}
+Obsoletes: ruby-devel < %{rubyver}
+Obsoletes: ruby-irb < %{rubyver}
+Obsoletes: ruby-libs < %{rubyver}
+Obsoletes: rubygem-bigdecimal
+Obsoletes: rubygem-io-console
+Obsoletes: rubygem-json
+Obsoletes: rubygem-psych
+Obsoletes: rubygem-rdoc
 Obsoletes: rubygems
 
 %description
@@ -40,7 +44,6 @@ export CFLAGS="$RPM_OPT_FLAGS -Wall -fno-strict-aliasing"
   --enable-shared \
   --disable-rpath \
   --without-X11 \
-  --without-tk \
   --includedir=%{_includedir}/ruby \
   --libdir=%{_libdir}
 
@@ -64,8 +67,17 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*
 
 %changelog
+* Fri Sep 15 2017 Masataka Suzuki <koshigoe@feedforce.jp> - 2.4.2
+- Update ruby version to 2.4.2
+
 * Thu Mar 30 2017 Takashi Masuda <masutaka@feedforce.jp> - 2.3.4
 - Update ruby version to 2.3.4
+
+* Thu Mar 23 2017 Masataka Suzuki <koshigoe@feedforce.jp> - 2.4.1
+- Update ruby version to 2.4.1
+
+* Mon Dec 26 2016 Takashi Masuda <masutaka@feedforce.jp> - 2.4.0
+- Update ruby version to 2.4.0
 
 * Tue Nov 22 2016 Masato Tanaka <tanaka@feedforce.jp> - 2.3.3
 - Update ruby version to 2.3.3

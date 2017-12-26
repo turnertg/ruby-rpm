@@ -12,6 +12,9 @@ jobs:
           name: Copy SPEC file
           command: cp ~/ruby-rpm/ruby.spec ./SPECS/
       - run:
+          name: Copy patch file
+          command: cp ~/ruby-rpm/prelude.c.patch ./SOURCES/
+      - run:
           name: Build Ruby RPM
           command: |
             RUBY_X_Y_Z_VERSION=$(grep "%define \+rubyver" ./SPECS/ruby.spec | awk '{print $3}')

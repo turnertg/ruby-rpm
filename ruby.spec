@@ -9,6 +9,8 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:       readline ncurses gdbm glibc openssl libyaml libffi zlib
 BuildRequires:  readline-devel ncurses-devel gdbm-devel glibc-devel gcc openssl-devel make libyaml-devel libffi-devel zlib-devel
 Source0:        ftp://ftp.ruby-lang.org/pub/ruby/ruby-%{rubyver}.tar.gz
+# See https://bugs.ruby-lang.org/issues/14234
+Patch:          prelude.c.patch
 Summary:        An interpreter of object-oriented scripting language
 Group:          Development/Languages
 Provides: ruby(abi) = 2.5
@@ -36,6 +38,7 @@ straight-forward, and extensible.
 
 %prep
 %setup -n ruby-%{rubyver}
+%patch -p0
 
 %build
 export CFLAGS="$RPM_OPT_FLAGS -Wall -fno-strict-aliasing"

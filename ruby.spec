@@ -70,7 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*
 
 %changelog
-* Fri Dec 15 2017 Takashi Masuda <masutaka@feedforce.jp> - 2.5.0
+* Mon Dec 25 2017 Takashi Masuda <masutaka@feedforce.jp> - 2.5.0
 - Update ruby version to 2.5.0
 
 * Fri Dec 15 2017 Masataka Suzuki <koshigoe@feedforce.jp> - 2.4.3

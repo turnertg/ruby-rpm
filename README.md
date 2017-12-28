@@ -30,9 +30,7 @@ The Docker images will be built at Docker Hub automatically.
 1. Commit changes about `Dockerfile-{6,7}` to feature branch
 1. Push the feature branch to GitHub repository
 1. Merge the feature branch to master branch
-1. Trigger Automated Build at Docker Hub via GitHub's Webhook
-1. Build Docker images at Docker Hub
-1. Allow to pull Docker images from Docker Hub
+1. Wait for building Docker images by Docker Hub Automated Build
 
 ### Manually
 

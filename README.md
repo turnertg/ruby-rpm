@@ -27,7 +27,7 @@ The Docker images are hosted at [Docker Hub](https://hub.docker.com/).
 
 The Docker images will be built at Docker Hub automatically.
 
-1. Commit changes about `Dockerfile-{6,7}` to feature branch
+1. Commit changes about `Dockerfile-{6,7}` to a feature branch
 1. Push the feature branch to GitHub repository
 1. Merge the feature branch to master branch
 1. Wait for building Docker images by Docker Hub Automated Build

@@ -34,7 +34,8 @@ $HOME/bin/github-release release \
   --repo $CIRCLE_PROJECT_REPONAME \
   --tag $RUBY_VERSION \
   --name "Ruby-${RUBY_VERSION}" \
-  --description "not release"
+  --description "not release" \
+  --target ruby-2.3
 
 #
 # Upload rpm files and build a release note

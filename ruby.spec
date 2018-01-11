@@ -67,7 +67,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*
 
 %changelog
-* Mon Jan 11 2018 Ryosuke Sato <r-sato@feedforce.jp> - 2.3.6
+* Thu Jan 11 2018 Ryosuke Sato <r-sato@feedforce.jp> - 2.3.6
 - Update ruby version to 2.3.6
 
 * Mon Oct 23 2017 Tsubasa Takayama <t-takayama@feedforce.jp> - 2.3.5

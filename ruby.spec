@@ -1,4 +1,4 @@
-%define rubyver         2.5.0
+%define rubyver         2.5.1
 
 Name:           ruby
 Version:        %{rubyver}
@@ -9,8 +9,6 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:       readline ncurses gdbm glibc openssl libyaml libffi zlib
 BuildRequires:  readline-devel ncurses-devel gdbm-devel glibc-devel gcc openssl-devel make libyaml-devel libffi-devel zlib-devel
 Source0:        ftp://ftp.ruby-lang.org/pub/ruby/ruby-%{rubyver}.tar.gz
-# See https://bugs.ruby-lang.org/issues/14234
-Patch:          prelude.c.patch
 Summary:        An interpreter of object-oriented scripting language
 Group:          Development/Languages
 Provides: ruby(abi) = 2.5
@@ -38,7 +36,6 @@ straight-forward, and extensible.
 
 %prep
 %setup -n ruby-%{rubyver}
-%patch -p0
 
 %build
 export CFLAGS="$RPM_OPT_FLAGS -Wall -fno-strict-aliasing"
@@ -70,6 +67,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*
 
 %changelog
+
+* Thu Mar 29 2018 Masataka Suzuki <koshigoe@feedforce.jp> - 2.5.1
+- Update ruby version to 2.5.1
+
 * Mon Dec 25 2017 Takashi Masuda <masutaka@feedforce.jp> - 2.5.0
 - Update ruby version to 2.5.0
 

@@ -35,7 +35,7 @@ $HOME/bin/github-release release \
   --tag $RUBY_VERSION \
   --name "Ruby-${RUBY_VERSION}" \
   --description "not release" \
-  --target master
+  --target ruby-2.4
 
 #
 # Upload rpm files and build a release note

@@ -1,4 +1,4 @@
-%define rubyver         2.5.1
+%define rubyver         2.4.4
 
 Name:           ruby
 Version:        %{rubyver}
@@ -11,7 +11,7 @@ BuildRequires:  readline-devel ncurses-devel gdbm-devel glibc-devel gcc openssl-
 Source0:        ftp://ftp.ruby-lang.org/pub/ruby/ruby-%{rubyver}.tar.gz
 Summary:        An interpreter of object-oriented scripting language
 Group:          Development/Languages
-Provides: ruby(abi) = 2.5
+Provides: ruby(abi) = 2.4
 Provides: ruby-irb
 Provides: ruby-rdoc
 Provides: ruby-libs
@@ -67,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*
 
 %changelog
+
+* Wed Apr 18 2018 Tsubasa Takayama <t-takayama@feedforce.jp> - 2.4.4
+- Update ruby version to 2.4.4
 
 * Thu Mar 29 2018 Masataka Suzuki <koshigoe@feedforce.jp> - 2.5.1
 - Update ruby version to 2.5.1

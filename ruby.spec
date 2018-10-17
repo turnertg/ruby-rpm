@@ -1,4 +1,4 @@
-%define rubyver         2.5.1
+%define rubyver         2.5.2
 
 Name:           ruby
 Version:        %{rubyver}
@@ -67,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*
 
 %changelog
+
+* Thu Oct 18 2018 Masataka Suzuki <koshigoe@feedforce.jp> - 2.5.2
+- Update ruby version to 2.5.2
 
 * Thu Mar 29 2018 Masataka Suzuki <koshigoe@feedforce.jp> - 2.5.1
 - Update ruby version to 2.5.1

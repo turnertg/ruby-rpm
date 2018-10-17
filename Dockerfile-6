@@ -8,6 +8,9 @@ RUN yum install -y rpm-build tar
 # ruby depends
 RUN yum -y install readline-devel ncurses-devel gdbm-devel glibc-devel gcc openssl-devel libyaml-devel libffi-devel zlib-devel
 
+# install ruby to compile ruby: https://bugs.ruby-lang.org/issues/14409
+RUN rpm -ivh https://github.com/feedforce/ruby-rpm/releases/download/2.5.1/ruby-2.5.1-1.el6.x86_64.rpm
+
 # rpmbuild command recommends to use `builder:builder` as user:group.
 RUN useradd -u 1000 builder
 

@@ -1,4 +1,4 @@
-%define rubyver         2.4.4
+%define rubyver         2.4.5
 
 Name:           ruby
 Version:        %{rubyver}
@@ -67,6 +67,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*
 
 %changelog
+* Thu Oct 18 2018 Tsubasa Takayama <t-takayama@feedforce.jp> - 2.4.5
+- Update ruby version to 2.4.5
 
 * Wed Apr 18 2018 Tsubasa Takayama <t-takayama@feedforce.jp> - 2.4.4
 - Update ruby version to 2.4.4

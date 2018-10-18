@@ -1,8 +1,7 @@
-FROM centos:7
+FROM centos:7.4.1708
 MAINTAINER feedforce Inc.
 
 # setup
-RUN yum update -y
 RUN yum install -y rpm-build tar make
 
 # ruby depends

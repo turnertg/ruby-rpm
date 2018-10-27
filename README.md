@@ -6,11 +6,17 @@ Forked from hansode's ruby-2.1.x-rpm project at https://github.com/hansode/ruby-
 
 It's Simple.
 
-1. Create your feature branch(e.g ruby-2.2.4)
-2. Edit `ruby.spec`
+1. Create your feature branch named `ruby-{major}.{minor}.{patch}` (e.g ruby-2.2.4)
+2. Edit `ruby-{major}.{minor}.spec`
+    - Change value of `Version`
+    - Add Changelog
 3. Push to the branch.
 4. Create a Pull request.
 5. When the Pull request is merged, CircleCI will release ruby rpms to https://github.com/feedforce/ruby-rpm/releases .
+
+## Automation
+
+We create a Pull Request automatically using CircleCI.
 
 # About Docker Image
 

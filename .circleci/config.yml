@@ -256,9 +256,9 @@ workflows:
             - ruby-2.5-centos7-test
             - ruby-2.5-centos6-test
           filters:
-              branches:
-                only:
-                  - master
+            branches:
+              only:
+                - master
 
   continuous_update:
     triggers:

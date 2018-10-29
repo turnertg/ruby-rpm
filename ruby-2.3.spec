@@ -1,26 +1,24 @@
-%define rubyver         2.5.3
-
-Name:           ruby
-Version:        %{rubyver}
-Release:        1%{?dist}
-License:        Ruby License/GPL - see COPYING
-URL:            http://www.ruby-lang.org/
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Requires:       readline ncurses gdbm glibc openssl libyaml libffi zlib
-BuildRequires:  readline-devel ncurses-devel gdbm-devel glibc-devel gcc openssl-devel make libyaml-devel libffi-devel zlib-devel
-Source0:        ftp://ftp.ruby-lang.org/pub/ruby/ruby-%{rubyver}.tar.gz
-Summary:        An interpreter of object-oriented scripting language
-Group:          Development/Languages
-Provides: ruby(abi) = 2.5
+Name: ruby
+Version: 2.3.8
+Release: 1%{?dist}
+License: Ruby License/GPL - see COPYING
+URL: http://www.ruby-lang.org/
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Requires: readline ncurses gdbm glibc openssl libyaml libffi zlib
+BuildRequires: readline-devel ncurses-devel gdbm-devel glibc-devel gcc openssl-devel make libyaml-devel libffi-devel zlib-devel
+Source0: https://cache.ruby-lang.org/pub/ruby/ruby-%{version}.tar.gz
+Summary: An interpreter of object-oriented scripting language
+Group: Development/Languages
+Provides: ruby(abi) = 2.3
 Provides: ruby-irb
 Provides: ruby-rdoc
 Provides: ruby-libs
 Provides: ruby-devel
 Provides: rubygems
-Obsoletes: ruby < %{rubyver}
-Obsoletes: ruby-devel < %{rubyver}
-Obsoletes: ruby-irb < %{rubyver}
-Obsoletes: ruby-libs < %{rubyver}
+Obsoletes: ruby < %{version}
+Obsoletes: ruby-devel < %{version}
+Obsoletes: ruby-irb < %{version}
+Obsoletes: ruby-libs < %{version}
 Obsoletes: rubygem-bigdecimal
 Obsoletes: rubygem-io-console
 Obsoletes: rubygem-json
@@ -35,7 +33,7 @@ files and to do system management tasks (as in Perl).  It is simple,
 straight-forward, and extensible.
 
 %prep
-%setup -n ruby-%{rubyver}
+%setup -n ruby-%{version}
 
 %build
 export CFLAGS="$RPM_OPT_FLAGS -Wall -fno-strict-aliasing"
@@ -68,23 +66,23 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 
-* Fri Oct 19 2018 Masataka Suzuki <koshigoe@feedforce.jp> - 2.5.3
-- Update ruby version to 2.5.3
+* Thu Oct 18 2018 Tsubasa Takayama <t-takayama@feedforce.jp> - 2.3.8
+- Update ruby version to 2.3.8
 
-* Thu Oct 18 2018 Masataka Suzuki <koshigoe@feedforce.jp> - 2.5.2
-- Update ruby version to 2.5.2
+* Tue May  8 2018 Tsubasa Takayama <t-takayama@feedforce.jp> - 2.3.7
+- Update ruby version to 2.3.7
 
-* Thu Mar 29 2018 Masataka Suzuki <koshigoe@feedforce.jp> - 2.5.1
-- Update ruby version to 2.5.1
+* Thu Jan 11 2018 Ryosuke Sato <r-sato@feedforce.jp> - 2.3.6
+- Update ruby version to 2.3.6
 
-* Mon Dec 25 2017 Takashi Masuda <masutaka@feedforce.jp> - 2.5.0
-- Update ruby version to 2.5.0
-
-* Fri Dec 15 2017 Masataka Suzuki <koshigoe@feedforce.jp> - 2.4.3
-- Update ruby version to 2.4.3
+* Mon Oct 23 2017 Tsubasa Takayama <t-takayama@feedforce.jp> - 2.3.5
+- Update ruby version to 2.3.5
 
 * Fri Sep 15 2017 Masataka Suzuki <koshigoe@feedforce.jp> - 2.4.2
 - Update ruby version to 2.4.2
+
+* Thu Mar 30 2017 Takashi Masuda <masutaka@feedforce.jp> - 2.3.4
+- Update ruby version to 2.3.4
 
 * Thu Mar 23 2017 Masataka Suzuki <koshigoe@feedforce.jp> - 2.4.1
 - Update ruby version to 2.4.1

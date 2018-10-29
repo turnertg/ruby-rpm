@@ -19,12 +19,12 @@ version: 2.1
 #
 # ## ENV (CircleCI)
 #
-# | Name               | Description                              | Example                                              |
-# | ------------------ | ---------------------------------------- | ---------------------------------------------------- |
-# | `GITHUB_TOKEN`     | GitHub API Token to use to create PR.    | "<Secret>"                                           |
-# | `GITHUB_EMAIL`     | Email address to use git commit message. | "technical_staff@feedforce.jp"                       |
-# | `GITHUB_USER`      | User name to use git commit message.     | "feedforce tech team"                                |
-# | `CHANGELOG_AUTHOR` | Author to write SPEC changelog.          | "feedforce tech team <technical_staff@feedforce.jp>" |
+# | Name                    | Description                              | Example                                              |
+# | ----------------------- | ---------------------------------------- | ---------------------------------------------------- |
+# | `GITHUB_TOKEN`          | GitHub API Token to use to create PR.    | "<Secret>"                                           |
+# | `GIT_CONFIG_USER_EMAIL` | Email address to use git commit message. | "technical_staff@feedforce.jp"                       |
+# | `GIT_CONFIG_USER_NAME`  | User name to use git commit message.     | "feedforce tech team"                                |
+# | `CHANGELOG_AUTHOR`      | Author to write SPEC changelog.          | "feedforce tech team <technical_staff@feedforce.jp>" |
 #
 # ## Usage
 #

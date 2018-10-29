@@ -27,8 +27,8 @@ do
     sed -i "s/^Version: .*\$/Version: ${ruby_x_y_z_version}/" $f
     sed -i "/^%changelog/a \\\n${message}" $f
 
-    git config --global user.email "${GITHUB_EMAIL}"
-    git config --global user.name "${GITHUB_USER}"
+    git config --global user.email "${GIT_CONFIG_USER_EMAIL}"
+    git config --global user.name "${GIT_CONFIG_USER_NAME}"
 
     branch=ruby-${ruby_x_y_z_version}
 

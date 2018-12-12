@@ -50,6 +50,7 @@ jobs:
           - "2.3"
           - "2.4"
           - "2.5"
+          - "2.6"
     docker:
       - image: "<< parameters.image >>"
         user: builder
@@ -82,6 +83,7 @@ jobs:
           - "2.3"
           - "2.4"
           - "2.5"
+          - "2.6"
     docker:
       - image: "<< parameters.image >>"
     steps:
@@ -107,6 +109,7 @@ jobs:
           - "2.3"
           - "2.4"
           - "2.5"
+          - "2.6"
     docker:
       # Although the Golang is not necessary, the CircleCI official image is used for fast downloading.
       - image: circleci/golang
@@ -255,6 +258,47 @@ workflows:
           requires:
             - ruby-2.5-centos7-test
             - ruby-2.5-centos6-test
+          filters:
+            branches:
+              only:
+                - master
+      # Ruby 2.6
+      - build:
+          name: ruby-2.6-centos6-build
+          image: "feedforce/ruby-rpm:centos6"
+          version: "2.6"
+          filters:
+            branches:
+              only:
+                - master
+                - /ruby-2\.6\..+/
+      - build:
+          name: ruby-2.6-centos7-build
+          image: "feedforce/ruby-rpm:centos7"
+          version: "2.6"
+          filters:
+            branches:
+              only:
+                - master
+                - /ruby-2\.6\..+/
+      - test:
+          name: ruby-2.6-centos6-test
+          image: centos:6
+          version: "2.6"
+          requires:
+            - ruby-2.6-centos6-build
+      - test:
+          name: ruby-2.6-centos7-test
+          image: centos:7
+          version: "2.6"
+          requires:
+            - ruby-2.6-centos7-build
+      - deploy:
+          name: ruby-2.6-deploy
+          version: "2.6"
+          requires:
+            - ruby-2.6-centos7-test
+            - ruby-2.6-centos6-test
           filters:
             branches:
               only:

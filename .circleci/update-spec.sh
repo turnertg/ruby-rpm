@@ -17,7 +17,7 @@ do
         continue
     fi
 
-    if grep -q "^Version: ${ruby_x_y_z_version}" $f
+    if grep -q "^Version: ${ruby_x_y_z_version}\$" $f
     then
         echo "SPEC file is up to date."
         continue

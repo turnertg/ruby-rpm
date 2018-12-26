@@ -36,7 +36,7 @@ straight-forward, and extensible.
 %setup -n ruby-%{version}
 
 %build
-export CFLAGS="$RPM_OPT_FLAGS -Wall -fno-strict-aliasing"
+export CFLAGS="$RPM_OPT_FLAGS -Wall -fno-strict-aliasing -std=gnu99"
 
 %configure \
   --enable-shared \

@@ -1,5 +1,5 @@
 Name: ruby
-Version: 2.6.1
+Version: 2.6.2
 Release: 1%{?dist}
 License: Ruby License/GPL - see COPYING
 URL: http://www.ruby-lang.org/
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*
 
 %changelog
+
+* Wed Mar 13 2019 feedforce tech team <technical_staff@feedforce.jp> - 2.6.2
+- Update ruby version to 2.6.2
 
 * Wed Jan 30 2019 feedforce tech team <technical_staff@feedforce.jp> - 2.6.1
 - Update ruby version to 2.6.1

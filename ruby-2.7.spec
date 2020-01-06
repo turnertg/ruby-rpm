@@ -4,6 +4,7 @@ Release: 1%{?dist}
 License: Ruby License/GPL - see COPYING
 URL: http://www.ruby-lang.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+AutoReqProv: no
 Requires: readline ncurses gdbm glibc openssl libyaml libffi zlib
 BuildRequires: readline-devel ncurses-devel gdbm-devel glibc-devel gcc openssl-devel make libyaml-devel libffi-devel zlib-devel
 Source0: https://cache.ruby-lang.org/pub/ruby/ruby-%{version}.tar.gz

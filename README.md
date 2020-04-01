@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/feedforce/ruby-rpm.svg?style=shield)](https://circleci.com/gh/feedforce/ruby-rpm)
+
 # What is this spec?
 
 Forked from hansode's ruby-2.1.x-rpm project at https://github.com/hansode/ruby-2.1.x-rpm and updated for 2.2.2.

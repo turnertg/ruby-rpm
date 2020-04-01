@@ -1,5 +1,5 @@
 Name: ruby
-Version: 2.5.7
+Version: 2.5.8
 Release: 1%{?dist}
 License: Ruby License/GPL - see COPYING
 URL: http://www.ruby-lang.org/
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*
 
 %changelog
+
+* Wed Apr 01 2020 feedforce tech team <technical_staff@feedforce.jp> - 2.5.8
+- Update ruby version to 2.5.8
 
 * Tue Oct 01 2019 feedforce tech team <technical_staff@feedforce.jp> - 2.5.7
 - Update ruby version to 2.5.7

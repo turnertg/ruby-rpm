@@ -10,11 +10,12 @@ need_to_release() {
 }
 
 get_github_release() {
-  version=v0.7.2
-  wget https://github.com/aktau/github-release/releases/download/${version}/linux-amd64-github-release.tar.bz2
-  tar xjf linux-amd64-github-release.tar.bz2
+  version=v0.7.5
+  wget https://github.com/meterup/github-release/releases/download/${version}/linux-amd64-github-release.bz2
+  bzip2 -d linux-amd64-github-release.bz2
+  chmod +x linux-amd64-github-release
   mkdir -p $HOME/bin
-  mv bin/linux/amd64/github-release $HOME/bin/
+  mv linux-amd64-github-release $HOME/bin/github-release
 }
 
 if ! need_to_release; then

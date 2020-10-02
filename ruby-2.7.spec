@@ -1,5 +1,5 @@
 Name: ruby
-Version: 2.7.1
+Version: 2.7.2
 Release: 1%{?dist}
 License: Ruby License/GPL - see COPYING
 URL: http://www.ruby-lang.org/
@@ -66,6 +66,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*
 
 %changelog
+
+* Fri Oct 02 2020 feedforce tech team <technical_staff@feedforce.jp> - 2.7.2
+- Update ruby version to 2.7.2
 
 * Wed Apr 01 2020 feedforce tech team <technical_staff@feedforce.jp> - 2.7.1
 - Update ruby version to 2.7.1

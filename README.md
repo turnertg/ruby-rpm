@@ -27,7 +27,6 @@ This project uses Docker to build RPMs.
 The Docker images are hosted at [Docker Hub](https://hub.docker.com/).
 
 - For CentOS 7: [`feedforce/ruby-rpm:centos7`](https://hub.docker.com/r/feedforce/ruby-rpm/)
-- For CentOS 6: [`feedforce/ruby-rpm:centos6`](https://hub.docker.com/r/feedforce/ruby-rpm/)
 
 ## How to build Docker image
 
@@ -46,7 +45,6 @@ You can also build Docker images manually.
 
 ```
 $ docker build -t feedforce/ruby-rpm:centos7 -f Dockerfile-7 .
-$ docker build -t feedforce/ruby-rpm:centos6 -f Dockerfile-6 .
 ```
 
 Push to Docker Hub if necessary.
@@ -54,5 +52,4 @@ Push to Docker Hub if necessary.
 ```
 $ docker login
 $ docker push feedforce/ruby-rpm:centos7
-$ docker push feedforce/ruby-rpm:centos6
 ```

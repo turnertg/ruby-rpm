@@ -47,8 +47,6 @@ jobs:
         description: Ruby version (e.g. 2.5)
         type: enum
         enum:
-          - "2.3"
-          - "2.4"
           - "2.5"
           - "2.6"
           - "2.7"
@@ -81,8 +79,6 @@ jobs:
         description: Ruby version (e.g. 2.5)
         type: enum
         enum:
-          - "2.3"
-          - "2.4"
           - "2.5"
           - "2.6"
           - "2.7"
@@ -108,8 +104,6 @@ jobs:
         description: Ruby version (e.g. 2.5)
         type: enum
         enum:
-          - "2.3"
-          - "2.4"
           - "2.5"
           - "2.6"
           - "2.7"
@@ -142,88 +136,6 @@ workflows:
   version: 2
   default:
     jobs:
-      # Ruby 2.3
-      - build:
-          name: ruby-2.3-centos6-build
-          image: "feedforce/ruby-rpm:centos6"
-          version: "2.3"
-          filters:
-            branches:
-              only:
-                - master
-                - /ruby-2\.3\..+/
-      - build:
-          name: ruby-2.3-centos7-build
-          image: "feedforce/ruby-rpm:centos7"
-          version: "2.3"
-          filters:
-            branches:
-              only:
-                - master
-                - /ruby-2\.3\..+/
-      - test:
-          name: ruby-2.3-centos6-test
-          image: centos:6
-          version: "2.3"
-          requires:
-            - ruby-2.3-centos6-build
-      - test:
-          name: ruby-2.3-centos7-test
-          image: centos:7
-          version: "2.3"
-          requires:
-            - ruby-2.3-centos7-build
-      - deploy:
-          name: ruby-2.3-deploy
-          version: "2.3"
-          requires:
-            - ruby-2.3-centos7-test
-            - ruby-2.3-centos6-test
-          filters:
-              branches:
-                only:
-                  - master
-      # Ruby 2.4
-      - build:
-          name: ruby-2.4-centos6-build
-          image: "feedforce/ruby-rpm:centos6"
-          version: "2.4"
-          filters:
-            branches:
-              only:
-                - master
-                - /ruby-2\.4\..+/
-      - build:
-          name: ruby-2.4-centos7-build
-          image: "feedforce/ruby-rpm:centos7"
-          version: "2.4"
-          filters:
-            branches:
-              only:
-                - master
-                - /ruby-2\.4\..+/
-      - test:
-          name: ruby-2.4-centos6-test
-          image: centos:6
-          version: "2.4"
-          requires:
-            - ruby-2.4-centos6-build
-      - test:
-          name: ruby-2.4-centos7-test
-          image: centos:7
-          version: "2.4"
-          requires:
-            - ruby-2.4-centos7-build
-      - deploy:
-          name: ruby-2.4-deploy
-          version: "2.4"
-          requires:
-            - ruby-2.4-centos7-test
-            - ruby-2.4-centos6-test
-          filters:
-              branches:
-                only:
-                  - master
       # Ruby 2.5
       - build:
           name: ruby-2.5-centos6-build

@@ -42,7 +42,6 @@ jobs:
         type: enum
         enum:
           - "feedforce/ruby-rpm:centos7"
-          - "feedforce/ruby-rpm:centos6"
       version:
         description: Ruby version (e.g. 2.5)
         type: enum
@@ -74,7 +73,6 @@ jobs:
         type: enum
         enum:
           - "centos:7"
-          - "centos:6"
       version:
         description: Ruby version (e.g. 2.5)
         type: enum
@@ -138,15 +136,6 @@ workflows:
     jobs:
       # Ruby 2.5
       - build:
-          name: ruby-2.5-centos6-build
-          image: "feedforce/ruby-rpm:centos6"
-          version: "2.5"
-          filters:
-            branches:
-              only:
-                - master
-                - /ruby-2\.5\..+/
-      - build:
           name: ruby-2.5-centos7-build
           image: "feedforce/ruby-rpm:centos7"
           version: "2.5"
@@ -155,12 +144,6 @@ workflows:
               only:
                 - master
                 - /ruby-2\.5\..+/
-      - test:
-          name: ruby-2.5-centos6-test
-          image: centos:6
-          version: "2.5"
-          requires:
-            - ruby-2.5-centos6-build
       - test:
           name: ruby-2.5-centos7-test
           image: centos:7
@@ -172,21 +155,11 @@ workflows:
           version: "2.5"
           requires:
             - ruby-2.5-centos7-test
-            - ruby-2.5-centos6-test
           filters:
             branches:
               only:
                 - master
       # Ruby 2.6
-      - build:
-          name: ruby-2.6-centos6-build
-          image: "feedforce/ruby-rpm:centos6"
-          version: "2.6"
-          filters:
-            branches:
-              only:
-                - master
-                - /ruby-2\.6\..+/
       - build:
           name: ruby-2.6-centos7-build
           image: "feedforce/ruby-rpm:centos7"
@@ -196,12 +169,6 @@ workflows:
               only:
                 - master
                 - /ruby-2\.6\..+/
-      - test:
-          name: ruby-2.6-centos6-test
-          image: centos:6
-          version: "2.6"
-          requires:
-            - ruby-2.6-centos6-build
       - test:
           name: ruby-2.6-centos7-test
           image: centos:7
@@ -213,21 +180,11 @@ workflows:
           version: "2.6"
           requires:
             - ruby-2.6-centos7-test
-            - ruby-2.6-centos6-test
           filters:
             branches:
               only:
                 - master
       # Ruby 2.7
-      - build:
-          name: ruby-2.7-centos6-build
-          image: "feedforce/ruby-rpm:centos6"
-          version: "2.7"
-          filters:
-            branches:
-              only:
-                - master
-                - /ruby-2\.7\..+/
       - build:
           name: ruby-2.7-centos7-build
           image: "feedforce/ruby-rpm:centos7"
@@ -237,12 +194,6 @@ workflows:
               only:
                 - master
                 - /ruby-2\.7\..+/
-      - test:
-          name: ruby-2.7-centos6-test
-          image: centos:6
-          version: "2.7"
-          requires:
-            - ruby-2.7-centos6-build
       - test:
           name: ruby-2.7-centos7-test
           image: centos:7
@@ -254,7 +205,6 @@ workflows:
           version: "2.7"
           requires:
             - ruby-2.7-centos7-test
-            - ruby-2.7-centos6-test
           filters:
             branches:
               only:

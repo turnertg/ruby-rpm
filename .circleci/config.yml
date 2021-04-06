@@ -49,6 +49,7 @@ jobs:
           - "2.5"
           - "2.6"
           - "2.7"
+          - "3.0"
     docker:
       - image: "<< parameters.image >>"
         user: builder
@@ -80,6 +81,7 @@ jobs:
           - "2.5"
           - "2.6"
           - "2.7"
+          - "3.0"
     docker:
       - image: "<< parameters.image >>"
     steps:
@@ -105,6 +107,7 @@ jobs:
           - "2.5"
           - "2.6"
           - "2.7"
+          - "3.0"
     docker:
       # Although the Golang is not necessary, the CircleCI official image is used for fast downloading.
       - image: circleci/golang
@@ -139,20 +142,20 @@ workflows:
           image: "feedforce/ruby-rpm:centos7"
           matrix:
             parameters:
-              version: ["2.5", "2.6", "2.7"]
+              version: ["2.5", "2.6", "2.7", "3.0"]
       - test:
           name: ruby-<< matrix.version >>-centos7-test
           image: centos:7
           matrix:
             parameters:
-              version: ["2.5", "2.6", "2.7"]
+              version: ["2.5", "2.6", "2.7", "3.0"]
           requires:
             - ruby-<< matrix.version >>-centos7-build
       - deploy:
           name: ruby-<< matrix.version >>-deploy
           matrix:
             parameters:
-              version: ["2.5", "2.6", "2.7"]
+              version: ["2.5", "2.6", "2.7", "3.0"]
           requires:
             - ruby-<< matrix.version >>-centos7-test
           filters:

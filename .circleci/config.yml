@@ -46,7 +46,6 @@ jobs:
         description: Ruby version (e.g. 2.5)
         type: enum
         enum:
-          - "2.5"
           - "2.6"
           - "2.7"
           - "3.0"
@@ -78,7 +77,6 @@ jobs:
         description: Ruby version (e.g. 2.5)
         type: enum
         enum:
-          - "2.5"
           - "2.6"
           - "2.7"
           - "3.0"
@@ -104,7 +102,6 @@ jobs:
         description: Ruby version (e.g. 2.5)
         type: enum
         enum:
-          - "2.5"
           - "2.6"
           - "2.7"
           - "3.0"
@@ -142,20 +139,20 @@ workflows:
           image: "feedforce/ruby-rpm:centos7"
           matrix:
             parameters:
-              version: ["2.5", "2.6", "2.7", "3.0"]
+              version: ["2.6", "2.7", "3.0"]
       - test:
           name: ruby-<< matrix.version >>-centos7-test
           image: centos:7
           matrix:
             parameters:
-              version: ["2.5", "2.6", "2.7", "3.0"]
+              version: ["2.6", "2.7", "3.0"]
           requires:
             - ruby-<< matrix.version >>-centos7-build
       - deploy:
           name: ruby-<< matrix.version >>-deploy
           matrix:
             parameters:
-              version: ["2.5", "2.6", "2.7", "3.0"]
+              version: ["2.6", "2.7", "3.0"]
           requires:
             - ruby-<< matrix.version >>-centos7-test
           filters:

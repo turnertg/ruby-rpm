@@ -5,6 +5,7 @@ set -xeu
 RUBY_X_Y_VERSION=$1
 SPEC_FILE=ruby-${RUBY_X_Y_VERSION}.spec
 RUBY_X_Y_Z_VERSION=$(grep '^Version: ' ~/ruby-rpm/${SPEC_FILE} | awk '{ print $NF }')
+ARCH=$(uname -m)
 
 cp ~/ruby-rpm/${SPEC_FILE} ~/rpmbuild/SPECS/
 
@@ -15,5 +16,5 @@ rpmbuild -ba ~/rpmbuild/SPECS/${SPEC_FILE}
 
 DEST_DIR=/tmp/ruby-${RUBY_X_Y_VERSION}-rpm
 mkdir -p ${DEST_DIR}
-cp ~/rpmbuild/RPMS/x86_64/* ${DEST_DIR}
+cp ~/rpmbuild/RPMS/${ARCH}/* ${DEST_DIR}
 cp ~/rpmbuild/SRPMS/* ${DEST_DIR}

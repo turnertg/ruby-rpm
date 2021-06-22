@@ -31,7 +31,7 @@ WORKDIR /home/builder/ruby-rpm
 USER builder
 
 COPY . /home/builder/ruby-rpm/
-RUN /home/builder/ruby-rpm/.circleci/build-rpm.sh $RUBY_X_Y_VERSION
+RUN /home/builder/ruby-rpm/scripts/build-rpm.sh $RUBY_X_Y_VERSION
 
 #
 # tester image

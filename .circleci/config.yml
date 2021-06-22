@@ -34,14 +34,23 @@ version: 2.1
 # 1. Add jobs of a new Ruby version to workflows in `.circleci/config.yml`
 #
 
+executors:
+  amd64:
+    machine:
+      image: ubuntu-2004:202104-01
+    environment:
+      DOCKER_BUILD_KIT: 1
+
+  arm64:
+    machine:
+      image: ubuntu-2004:202104-01
+    environment:
+      DOCKER_BUILD_KIT: 1
+    resource_class: arm.medium
+
 jobs:
-  build:
+  build_and_test:
     parameters:
-      image:
-        description: Docker image for building RPM
-        type: enum
-        enum:
-          - "feedforce/ruby-rpm:centos7"
       version:
         description: Ruby version (e.g. 2.5)
         type: enum
@@ -49,52 +58,59 @@ jobs:
           - "2.6"
           - "2.7"
           - "3.0"
-    docker:
-      - image: "<< parameters.image >>"
-        user: builder
+      arch:
+        type: enum
+        enum:
+          - "amd64"
+          - "arm64"
+    executor: << parameters.arch >>
     working_directory: ~/ruby-rpm
     steps:
       - checkout
       - run:
-          name: "Build Ruby RPM << parameters.version >>"
-          command: ~/ruby-rpm/.circleci/build-rpm.sh "<< parameters.version >>"
+          name: "Build Docker image for Ruby RPM << parameters.version >>"
+          command: |
+            docker build \
+              -t feedforce/ruby-rpm:<< parameters.version >>-builder \
+              -f Dockerfile-7 \
+              --target builder \
+              --cache-from=feedforce/ruby-rpm:centos7 \
+              --build-arg RUBY_X_Y_VERSION=<< parameters.version >> \
+              --progress plain \
+              .
+      - run:
+          name: "Extract RPM file from Docker container"
+          command: |
+            CONTAINER_ID=$(docker create feedforce/ruby-rpm:<< parameters.version >>-builder)
+            docker cp ${CONTAINER_ID}:/tmp/ruby-<< parameters.version >>-rpm/ /tmp/
       - store_artifacts:
           path: "/tmp/ruby-<< parameters.version >>-rpm"
           destination: "ruby-<< parameters.version >>-rpm"
+      - run:
+          name: "Build Docker image to install Ruby RPM << parameters.version >>"
+          command: |
+            docker build \
+              -t feedforce/ruby-rpm:<< parameters.version >>-tester \
+              -f Dockerfile-7 \
+              --target tester \
+              --cache-from=feedforce/ruby-rpm:<< parameters.version >>-builder \
+              --build-arg RUBY_X_Y_VERSION=<< parameters.version >> \
+              --progress plain \
+              .
+      - run:
+          name: "Run Ruby << parameters.version >>"
+          command: |
+            docker run -it feedforce/ruby-rpm:<< parameters.version >>-tester \
+              ruby -v -e 'puts File.read("/etc/centos-release")'
+      - run:
+          name: "Uninstall Ruby RPM << parameters.version >>"
+          command: |
+            docker run -it feedforce/ruby-rpm:<< parameters.version >>-tester \
+              yum remove -y ruby
       - persist_to_workspace:
           root: "/tmp/ruby-<< parameters.version >>-rpm"
           paths:
             - ./*
-
-  test:
-    parameters:
-      image:
-        description: Docker image for testing built RPM
-        type: enum
-        enum:
-          - "centos:7"
-      version:
-        description: Ruby version (e.g. 2.5)
-        type: enum
-        enum:
-          - "2.6"
-          - "2.7"
-          - "3.0"
-    docker:
-      - image: "<< parameters.image >>"
-    steps:
-      - attach_workspace:
-          at: "/tmp/ruby-<< parameters.version >>-rpm"
-      - run:
-          name: "Install Ruby RPM << parameters.version >>"
-          command: "yum install -y /tmp/ruby-<< parameters.version >>-rpm/ruby-<< parameters.version >>.*.x86_64.rpm"
-      - run:
-          name: "Run Ruby << parameters.version >>"
-          command: |
-            ruby -v -e 'puts File.read("/etc/centos-release")'
-      - run:
-          name: "Uninstall Ruby RPM << parameters.version >>"
-          command: yum remove -y ruby
 
   deploy:
     parameters:
@@ -134,27 +150,20 @@ workflows:
   version: 2
   default:
     jobs:
-      - build:
-          name: ruby-<< matrix.version >>-centos7-build
-          image: "feedforce/ruby-rpm:centos7"
+      - build_and_test:
+          name: ruby-<< matrix.version >>-centos7-<< matrix.arch >>-build-and-test
           matrix:
             parameters:
               version: ["2.6", "2.7", "3.0"]
-      - test:
-          name: ruby-<< matrix.version >>-centos7-test
-          image: centos:7
-          matrix:
-            parameters:
-              version: ["2.6", "2.7", "3.0"]
-          requires:
-            - ruby-<< matrix.version >>-centos7-build
+              arch: ["amd64", "arm64"]
       - deploy:
           name: ruby-<< matrix.version >>-deploy
           matrix:
             parameters:
               version: ["2.6", "2.7", "3.0"]
           requires:
-            - ruby-<< matrix.version >>-centos7-test
+            - ruby-<< matrix.version >>-centos7-amd64-build-and-test
+            - ruby-<< matrix.version >>-centos7-arm64-build-and-test
           filters:
             branches:
               only:

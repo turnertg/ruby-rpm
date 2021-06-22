@@ -30,21 +30,12 @@ The Docker images are hosted at [Docker Hub](https://hub.docker.com/).
 
 ## How to build Docker image
 
-### Automatically
-
-The Docker images will be built at Docker Hub automatically.
-
-1. Commit changes about `Dockerfile-{6,7}` to a feature branch
-1. Push the feature branch to GitHub repository
-1. Merge the feature branch to the master branch
-1. Wait for building Docker images by Docker Hub Automated Build
-
 ### Manually
 
 You can also build Docker images manually.
 
 ```
-$ docker build -t feedforce/ruby-rpm:centos7 -f Dockerfile-7 .
+$ docker build -t feedforce/ruby-rpm:centos7 -f Dockerfile-7 --target base .
 ```
 
 Push to Docker Hub if necessary.

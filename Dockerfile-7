@@ -2,7 +2,7 @@
 # base image
 #
 
-FROM centos:7.9.2009 AS base
+FROM centos:7 AS base
 MAINTAINER feedforce Inc.
 
 # setup

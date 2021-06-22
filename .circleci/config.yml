@@ -107,6 +107,16 @@ jobs:
           command: |
             docker run -it feedforce/ruby-rpm:<< parameters.version >>-tester \
               yum remove -y ruby
+      # Avoid "Concurrent upstream jobs persisted the same file(s)" error in attach_workspace
+      # see https://app.circleci.com/pipelines/github/feedforce/ruby-rpm/10839/workflows/830b00e7-ebb9-49c4-b363-805085c2a47b/jobs/23143
+      - when:
+          condition:
+            equal: [ << parameters.arch >>, arm64 ]
+          steps:
+            - run:
+                name: "Delete SRPM file only arm64"
+                command: |
+                  rm /tmp/ruby-<< parameters.version >>-rpm/ruby-*.el7.src.rpm
       - persist_to_workspace:
           root: "/tmp/ruby-<< parameters.version >>-rpm"
           paths:

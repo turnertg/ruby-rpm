@@ -144,6 +144,17 @@ jobs:
       - run:
           name: "List Ruby RPM files"
           command: ls -l /tmp/ruby-<< parameters.version >>-rpm/
+      # Workaround to keep backward compatibility for RPM file name
+      # see https://github.com/feedforce/ruby-rpm/pull/63
+      - run:
+          name: "Rename Ruby RPM files"
+          command: |
+            for f in /tmp/ruby-<< parameters.version >>-rpm/*.el7.*.rpm; do
+              mv "${f}" $(echo "${f}" | sed "s/\.el7\./\.el7\.centos\./")
+            done
+      - run:
+          name: "List Ruby RPM files"
+          command: ls -l /tmp/ruby-<< parameters.version >>-rpm/
       - deploy:
           name: "Deploy Ruby RPM << parameters.version >>"
           command: "./.circleci/github-release.sh << parameters.version >>"

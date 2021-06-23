@@ -41,6 +41,7 @@ $ docker buildx build \
     -t feedforce/ruby-rpm:centos7 \
     -f Dockerfile-7 \
     --target base \
+    --build-arg BUILDKIT_INLINE_CACHE=1 \
     --platform=linux/amd64,linux/arm64 \
     --push \
     .

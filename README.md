@@ -28,19 +28,21 @@ The Docker images are hosted at [Docker Hub](https://hub.docker.com/).
 
 - For CentOS 7: [`feedforce/ruby-rpm:centos7`](https://hub.docker.com/r/feedforce/ruby-rpm/)
 
-## How to build Docker image
+## How to build and push Docker image
 
 ### Manually
 
 You can also build Docker images manually.
 
 ```
-$ docker build -t feedforce/ruby-rpm:centos7 -f Dockerfile-7 --target base .
-```
-
-Push to Docker Hub if necessary.
-
-```
 $ docker login
-$ docker push feedforce/ruby-rpm:centos7
+$ docker buildx create --use
+$ docker buildx build \
+    -t feedforce/ruby-rpm:centos7 \
+    -f Dockerfile-7 \
+    --target base \
+    --build-arg BUILDKIT_INLINE_CACHE=1 \
+    --platform=linux/amd64,linux/arm64 \
+    --push \
+    .
 ```

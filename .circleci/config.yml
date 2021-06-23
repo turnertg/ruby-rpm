@@ -141,6 +141,9 @@ jobs:
       - checkout
       - attach_workspace:
           at: "/tmp/ruby-<< parameters.version >>-rpm"
+      - run:
+          name: "List Ruby RPM files"
+          command: ls -l /tmp/ruby-<< parameters.version >>-rpm/
       - deploy:
           name: "Deploy Ruby RPM << parameters.version >>"
           command: "./.circleci/github-release.sh << parameters.version >>"

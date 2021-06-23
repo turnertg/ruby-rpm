@@ -67,7 +67,7 @@ Build on CentOS 7
 EOS
 
 # CentOS 7
-for i in *.el7.centos.x86_64.rpm *.el7.centos.src.rpm; do
+for i in *.el7.centos.*.rpm; do
   print_rpm_markdown $i >> description.md
   upload_rpm $i
 done

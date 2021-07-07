@@ -1,5 +1,5 @@
 Name: ruby
-Version: 3.0.1
+Version: 3.0.2
 Release: 1%{?dist}
 License: Ruby License/GPL - see COPYING
 URL: http://www.ruby-lang.org/
@@ -66,6 +66,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*
 
 %changelog
+
+* Wed Jul 07 2021 feedforce tech team <technical_staff@feedforce.jp> - 3.0.2
+- Update ruby version to 3.0.2
 
 * Wed Apr 07 2021 feedforce tech team <technical_staff@feedforce.jp> - 3.0.1
 - Update ruby version to 3.0.1

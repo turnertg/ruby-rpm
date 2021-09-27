@@ -75,7 +75,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*
 
 %changelog
-
 * Mon Jul 26 2021 Trevor Turner <turnertg@uw.edu> - 2.7.4-2
 - Release bump with dependency fixes for (mod_)passenger 
 

@@ -1,6 +1,6 @@
 Name: ruby
 Version: 3.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Ruby License/GPL - see COPYING
 URL: http://www.ruby-lang.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -11,15 +11,20 @@ Source0: https://cache.ruby-lang.org/pub/ruby/ruby-%{version}.tar.gz
 Summary: An interpreter of object-oriented scripting language
 Group: Development/Languages
 Provides: ruby(abi) = 3.0
+Provides: ruby(release) = %{version}
+Provides: ruby(rubygems)
+Provides: rubygem(rake)
 Provides: ruby-irb
 Provides: ruby-rdoc
 Provides: ruby-libs
 Provides: ruby-devel
 Provides: rubygems
+Provides: libruby.so.2.0()(64bit)
 Obsoletes: ruby < %{version}
 Obsoletes: ruby-devel < %{version}
 Obsoletes: ruby-irb < %{version}
 Obsoletes: ruby-libs < %{version}
+Obsoletes: rubygem-rake
 Obsoletes: rubygem-bigdecimal
 Obsoletes: rubygem-io-console
 Obsoletes: rubygem-json
@@ -55,6 +60,10 @@ make install DESTDIR=$RPM_BUILD_ROOT
 #we don't want to keep the src directory
 rm -rf $RPM_BUILD_ROOT/usr/src
 
+#this is bad practice and may be incompatible with apps looking for old ruby abi
+#lying in package spec is worse tho and stupid passenger rpm wants it explicitly
+ln -s /usr/lib64/libruby.so $RPM_BUILD_ROOT/usr/lib64/libruby.so.2.0
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -66,6 +75,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*
 
 %changelog
+* Mon Sep 27 2021 Trevor Turner <turnertg@uw.edu> - 3.0.2-2
+- Release bump with dependency fixes for (mod_)passenger 
 
 * Wed Jul 07 2021 feedforce tech team <technical_staff@feedforce.jp> - 3.0.2
 - Update ruby version to 3.0.2

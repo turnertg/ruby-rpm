@@ -12,8 +12,8 @@ Summary: An interpreter of object-oriented scripting language
 Group: Development/Languages
 Provides: ruby(abi) = 3.0
 Provides: ruby(release) = %{version}
-Provides: ruby(rubygems)
-Provides: rubygem(rake)
+Provides: ruby(rubygems) = 3.2.22
+Provides: rubygem(rake) = 13.0.3
 Provides: ruby-irb
 Provides: ruby-rdoc
 Provides: ruby-libs
